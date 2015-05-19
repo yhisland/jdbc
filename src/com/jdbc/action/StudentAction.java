@@ -7,17 +7,27 @@ import com.jdbc.model.Student;
 
 public class StudentAction {
 	public static void main(String[] args) throws Exception {
-/*		StudentDao s=new StudentDao();
-		List<Student> st=s.query();
-		for (Student student : st) {
-			System.out.println(student.getName()+","+student.getAge());
-		}*/
+		StudentDao s=new StudentDao();
 		
-		StudentDao ss=new StudentDao();
-		Student s1=new Student();
+/*		Student s1=new Student();
 		s1.setName("小美");
 		s1.setSex(1);
 		s1.setAge(22);
-		ss.addStudent(s1);
+		s.addStudent(s1);*/
+
+/*		Student s1= new Student();
+		s1.setName("小美2");
+		s1.setSex(1);
+		s1.setAge(22);
+		s1.setId(3);
+		s.updateStudent(s1);*/
+
+/*		s.delStudent(3);*/
+		
+		List<Student> st=s.query();
+		for (Student student : st) {
+			System.out.println(student.getName()+","+student.getAge());
+		}		
+		
 	}
 }

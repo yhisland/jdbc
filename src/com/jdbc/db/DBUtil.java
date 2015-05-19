@@ -28,9 +28,9 @@ public class DBUtil {
 	public static Connection getConnection(){
 		return conn;
 	}
-	public static void main(String[] args) throws Exception {
+/*	public static void main(String[] args) throws Exception {
 
-/*		// 1.加载驱动程序
+		// 1.加载驱动程序
 		Class.forName("com.mysql.jdbc.Driver");
 		// 2.获取数据库连接
 		Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -43,6 +43,6 @@ public class DBUtil {
 					+ "," + rs.getInt("sex") + "," + rs.getString("phone")
 					+ "," + rs.getString("create_user") + ","
 					+ rs.getDate("create_date") + "," + rs.getInt("isdel"));
-		}*/
-	}
+		}
+	}*/
 }

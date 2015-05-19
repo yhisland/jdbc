@@ -13,7 +13,7 @@ import com.jdbc.db.DBUtil;
 import com.jdbc.model.Student;
 
 public class StudentDao {
-
+	//新增学生信息
 	public void addStudent(Student s) throws Exception{
 //		DBUtil conn =new DBUtil();
 //		conn.getConnection();
@@ -34,20 +34,47 @@ public class StudentDao {
 //		ptmt.setDate(6, new Date(s.getCreate_date().getTime()));
 		ptmt.setInt(6, s.getIsdel());
 		
-		
 		ptmt.execute();
 		 
 	}
-	public void updateStudent(){
+	//更新学生信息
+	public void updateStudent(Student s) throws Exception{
+		Connection conn=DBUtil.getConnection();
+		String sql=""+
+				" update student "+
+				" set name=?,sex=?,age=?,phone=?,isdel=? "+
+				" where id = ? ";
+		
+		PreparedStatement ptmt = conn.prepareStatement(sql);
+		
+		ptmt.setString(1, s.getName());
+		ptmt.setInt(2, s.getSex());
+		ptmt.setInt(3, s.getAge());
+		ptmt.setString(4, s.getPhone());
+		ptmt.setInt(5, s.getIsdel());
+		ptmt.setInt(6, s.getId());
+		
+		ptmt.execute();		
+	}
+	//删除学生信息
+	public void delStudent(int id) throws Exception{
+		Connection conn = DBUtil.getConnection();
+		String sql = " delete from student where id= ? ";
+		PreparedStatement ptmt = conn.prepareStatement(sql);
+		ptmt.setInt(1, id);
+		ptmt.execute();
 		
 	}
-	public void delStudent(){
-		
-	}
+	//遍历学生信息
 	public List<Student> query() throws Exception{
 		Connection conn=DBUtil.getConnection();
-		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select id,name,sex,age,phone,create_user,create_date,isdel from student");
+		
+		String sql = "select id,name,sex,age,phone,create_user,create_date,isdel from student";
+		PreparedStatement ptmt = conn.prepareStatement(sql);
+		ResultSet rs=ptmt.executeQuery();
+		
+//		Statement stmt = conn.createStatement();
+//		ResultSet rs = stmt.executeQuery("select id,name,sex,age,phone,create_user,create_date,isdel from student");
 		
 		List<Student> st=new ArrayList<Student>();
 		Student s=null;
@@ -65,7 +92,11 @@ public class StudentDao {
 		}
 		return st;
 	}
-	public Student get(){
+	//根据id查找学生信息
+	public Student get(int id){
+		Connection conn=DBUtil.getConnection();
+		
+		
 		return null;
 	}
 }
