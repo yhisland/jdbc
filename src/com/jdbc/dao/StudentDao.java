@@ -35,6 +35,7 @@ public class StudentDao {
 		ptmt.setInt(6, s.getIsdel());
 		
 		ptmt.execute();
+		System.out.println(ptmt.execute());
 		 
 	}
 	//更新学生信息
@@ -54,7 +55,8 @@ public class StudentDao {
 		ptmt.setInt(5, s.getIsdel());
 		ptmt.setInt(6, s.getId());
 		
-		ptmt.execute();		
+		ptmt.execute();	
+		System.out.println(ptmt.execute());
 	}
 	//删除学生信息
 	public void delStudent(int id) throws Exception{
@@ -63,13 +65,15 @@ public class StudentDao {
 		PreparedStatement ptmt = conn.prepareStatement(sql);
 		ptmt.setInt(1, id);
 		ptmt.execute();
+		System.out.println(ptmt.execute());
 		
 	}
 	//遍历学生信息
 	public List<Student> query() throws Exception{
 		Connection conn=DBUtil.getConnection();
 		
-		String sql = "select id,name,sex,age,phone,create_user,create_date,isdel from student";
+		String sql =" select * from student ";
+				//"select id,name,sex,age,phone,create_user,create_date,isdel from student";
 		PreparedStatement ptmt = conn.prepareStatement(sql);
 		ResultSet rs=ptmt.executeQuery();
 		
@@ -81,8 +85,13 @@ public class StudentDao {
 		
 		while (rs.next()) {
 			s=new Student();
+			System.out.println(rs.getString("name"));
+			String m=rs.getString("name");
+			System.out.println(m);
 			s.setName(rs.getString("name"));
+			s.setSex(rs.getInt("sex"));
 			s.setAge(rs.getInt("age"));
+			s.setPhone(rs.getString("phone"));
 			
 			st.add(s);
 			/*System.out.println(rs.getInt("id") + "," + rs.getString("name")
@@ -90,13 +99,24 @@ public class StudentDao {
 					+ "," + rs.getString("create_user") + ","
 					+ rs.getDate("create_date") + "," + rs.getInt("isdel"));*/
 		}
+		System.out.println(ptmt.execute());
+		rs.close();
+		ptmt.close();
+		conn.close();
 		return st;
 	}
 	//根据id查找学生信息
-	public Student get(int id){
+	public Student get(int id) throws Exception{
 		Connection conn=DBUtil.getConnection();
+		String sql= " select * from student where id=? ";
+		PreparedStatement ptmt=conn.prepareStatement(sql);
+		ptmt.setInt(1, id);
+		ResultSet rs=ptmt.executeQuery();
+		List<Student> st = new ArrayList<Student>();
+		Student s= null;
 		
 		
+		ptmt.execute();
 		return null;
 	}
 }

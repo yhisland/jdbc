@@ -23,10 +23,10 @@ public class StudentAction {
 		s.updateStudent(s1);*/
 
 /*		s.delStudent(3);*/
-		
+//		s.get(1);
 		List<Student> st=s.query();
 		for (Student student : st) {
-			System.out.println(student.getName()+","+student.getAge());
+			System.out.println(student.getName()+","+student.getAge()+","+student.getPhone());
 		}		
 		
 	}

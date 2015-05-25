@@ -36,8 +36,7 @@ public class DBUtil {
 		Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
 		// 3.通过数据库连接操作数据库，实现增删改查
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt
-				.executeQuery("select id,name,sex,age,phone,create_user,create_date,isdel from student");
+		ResultSet rs = stmt.executeQuery("select id,name,sex,age,phone,create_user,create_date,isdel from student");
 		while (rs.next()) {
 			System.out.println(rs.getInt("id") + "," + rs.getString("name")
 					+ "," + rs.getInt("sex") + "," + rs.getString("phone")
